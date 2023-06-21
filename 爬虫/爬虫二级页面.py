@@ -1,0 +1,16 @@
+from bs4 import BeautifulSoup
+import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+headers={
+    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36",
+    "Cookie":"guid=86053cf5583ca5727782a8e1f61a2319; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2286053cf5583ca5727782a8e1f61a2319%22%2C%22first_id%22%3A%22185b3f92c80e34-09bde91a9e4e3d8-977173c-2073600-185b3f92c8180f%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTg1YjNmOTJjODBlMzQtMDliZGU5MWE5ZTRlM2Q4LTk3NzE3M2MtMjA3MzYwMC0xODViM2Y5MmM4MTgwZiIsIiRpZGVudGl0eV9sb2dpbl9pZCI6Ijg2MDUzY2Y1NTgzY2E1NzI3NzgyYThlMWY2MWEyMzE5In0%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%2286053cf5583ca5727782a8e1f61a2319%22%7D%2C%22%24device_id%22%3A%22185b3f92c80e34-09bde91a9e4e3d8-977173c-2073600-185b3f92c8180f%22%7D; privacy=1675822948; Hm_lvt_1370a11171bd6f2d9b1fe98951541941=1675822950; nsearch=jobarea%3D%26%7C%26ord_field%3D%26%7C%26recentSearch0%3D%26%7C%26recentSearch1%3D%26%7C%26recentSearch2%3D%26%7C%26recentSearch3%3D%26%7C%26recentSearch4%3D%26%7C%26collapse_expansion%3D; search=jobarea%7E%60%7C%21recentSearch0%7E%60000000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FApython%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch1%7E%60000000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FA%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch2%7E%60000000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FAjava%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21; ssxmod_itna=QqAx9QitDQiQ0=Lx0dbk9QNi=DCK1ooPdeTDRGx0Hu9eGzDAxn40iDt==Tn6GUC8u+tNWombwevF08YuKqt=icYqf7SdPGLDmKDy++oPGGUxBYDQxAYDGDDPDogPD1D3qDkD7h6CMy1qGWDm4kDWPDYxDrjOKDRxi7DDHQCx07DQ5koRawcagCqm7q=0KD91oDs6xfd0FmEUS4Mp7AwtuoNDGddpkqdjiUa6hGf7KDXOQDv1H1lgapg/FsBoY3eARoIma5TjxdqniYeYhxI7Gx+mWgWjnSeC4qUChNHnDDigTF4D; ssxmod_itna2=QqAx9QitDQiQ0=Lx0dbk9QNi=DCK1ooPdeTDRDnFS4DsEDwg4jKG7U=iv4D="
+}
+Search=input("请输入要搜索的关键字：")
+url='https://we.51job.com/pc/search?keyword={}&searchType=2&sortType=0&metro='.format(Search)
+browser = webdriver.Chrome('chromedriver')
+browser.get(url)
+browser.implicitly_wait(10)
+div=browser.find_element(By.XPATH,'//*[@id="app"]/div/div[2]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div[1]/a/div/span[1]').text
+print(div)
